@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import img1 from "../../images/testimage2.png";
 
 export default function Producttile(props) {
+  const { id } = props.product;
+
   // currency formatter
   function format(x) {
     x = x.toString();
@@ -13,95 +15,91 @@ export default function Producttile(props) {
     return x;
   }
 
-  const {
-    id,
-    productDiscount,
-    image,
-    productName,
-    sellingPrice,
-  } = props.product;
-
-  let StatusDiscount;
-  let renderDiscount;
-
-  if (productDiscount == null) {
-    StatusDiscount = false;
-  } else if (
-    productDiscount.Status ||
-    productDiscount.subcategoryDiscounts.status
-  ) {
-    StatusDiscount = true;
+  function addToFav() {
+    console.log(id);
   }
 
-  const [discount, setDiscount] = useState(StatusDiscount);
+  // let StatusDiscount;
+  // let renderDiscount;
 
-  // if (discount && productDiscount !== null) {
-  if (false) {
-    if (productDiscount.Status && productDiscount.subcategoryDiscounts.status) {
-      // mtlb agr dono lagay hwe hen to priority deni hai product level ko
+  // if (productDiscount == null) {
+  //   StatusDiscount = false;
+  // } else if (
+  //   productDiscount.Status ||
+  //   productDiscount.subcategoryDiscounts.status
+  // ) {
+  //   StatusDiscount = true;
+  // }
 
-      renderDiscount = (
-        <div className="product-pricing">
-          <span className="product-sales-price" title="Sale Price">
-            SR{" "}
-            <span style={{ textDecoration: "line-through" }}>
-              {sellingPrice}
-            </span>{" "}
-            <span>
-              {format(
-                sellingPrice - (productDiscount.Percent / 100) * sellingPrice
-              )}
-            </span>{" "}
-          </span>
-        </div>
-      );
-    } else if (productDiscount.Status) {
-      // agr sirf product pr laga hwa to product wala hi lagana hai na
-      renderDiscount = (
-        <div className="product-pricing">
-          <span className="product-sales-price" title="Sale Price">
-            SR{" "}
-            <span style={{ textDecoration: "line-through" }}>
-              {sellingPrice}
-            </span>{" "}
-            <span>
-              {format(
-                sellingPrice - (productDiscount.Percent / 100) * sellingPrice
-              )}
-            </span>{" "}
-          </span>
-        </div>
-      );
-    } else if (productDiscount.subcategoryDiscounts.status) {
-      console.log("category wala on hai");
-      renderDiscount = (
-        <div className="product-pricing">
-          <span className="product-sales-price" title="Sale Price">
-            SR{" "}
-            <span style={{ textDecoration: "line-through" }}>
-              {sellingPrice}
-            </span>{" "}
-            <span>
-              {format(
-                sellingPrice -
-                  (productDiscount.subcategoryDiscounts.Percent / 100) *
-                    sellingPrice
-              )}
-            </span>{" "}
-          </span>
-        </div>
-      );
-    }
-  } else {
-    renderDiscount = (
-      <div className="product-pricing">
-        <span className="product-sales-price" title="Sale Price">
-          {/* SR <span>{format(list_price)}</span>{" "} */}
-          SR <span>4234</span>{" "}
-        </span>
-      </div>
-    );
-  }
+  // const [discount, setDiscount] = useState(StatusDiscount);
+
+  // // if (discount && productDiscount !== null) {
+  // if (false) {
+  //   if (productDiscount.Status && productDiscount.subcategoryDiscounts.status) {
+  //     // mtlb agr dono lagay hwe hen to priority deni hai product level ko
+
+  //     renderDiscount = (
+  //       <div className="product-pricing">
+  //         <span className="product-sales-price" title="Sale Price">
+  //           SR{" "}
+  //           <span style={{ textDecoration: "line-through" }}>
+  //             {sellingPrice}
+  //           </span>{" "}
+  //           <span>
+  //             {format(
+  //               sellingPrice - (productDiscount.Percent / 100) * sellingPrice
+  //             )}
+  //           </span>{" "}
+  //         </span>
+  //       </div>
+  //     );
+  //   } else if (productDiscount.Status) {
+  //     // agr sirf product pr laga hwa to product wala hi lagana hai na
+  //     renderDiscount = (
+  //       <div className="product-pricing">
+  //         <span className="product-sales-price" title="Sale Price">
+  //           SR{" "}
+  //           <span style={{ textDecoration: "line-through" }}>
+  //             {sellingPrice}
+  //           </span>{" "}
+  //           <span>
+  //             {format(
+  //               sellingPrice - (productDiscount.Percent / 100) * sellingPrice
+  //             )}
+  //           </span>{" "}
+  //         </span>
+  //       </div>
+  //     );
+  //   } else if (productDiscount.subcategoryDiscounts.status) {
+  //     console.log("category wala on hai");
+  //     renderDiscount = (
+  //       <div className="product-pricing">
+  //         <span className="product-sales-price" title="Sale Price">
+  //           SR{" "}
+  //           <span style={{ textDecoration: "line-through" }}>
+  //             {sellingPrice}
+  //           </span>{" "}
+  //           <span>
+  //             {format(
+  //               sellingPrice -
+  //                 (productDiscount.subcategoryDiscounts.Percent / 100) *
+  //                   sellingPrice
+  //             )}
+  //           </span>{" "}
+  //         </span>
+  //       </div>
+  //     );
+  //   }
+  // } else {
+  //   renderDiscount = (
+  //     <div className="product-pricing">
+  //       <span className="product-sales-price" title="Sale Price">
+  //         {/* SR <span>{format(list_price)}</span>{" "} */}
+  //         SR <span>4234</span>{" "}
+  //       </span>
+  //     </div>
+  //   );
+  // }
 
   let img;
   // if (props.product.image.formats.small !== undefined) {
@@ -126,11 +124,21 @@ export default function Producttile(props) {
   // }
 
   return (
-    <li className="grid-tile" data-colors-to-show="RAQZ">
+    <li
+      className="grid-tile"
+      style={{ position: "relative" }}
+      data-colors-to-show="RAQZ"
+    >
+      <h2 class="favbutton">
+        <span onClick={addToFav} className="fa fa-heart"></span>+
+      </h2>
       <div className="product-tile">
         <div className="product-image">
           <NavLink to={`/productdetail/${id}`} exact className="thumb-link">
-            {img}
+            <img
+              src={`data:image/gif;base64,${props.product.image_1920}`}
+              class="productImg"
+            />
           </NavLink>
         </div>
         <div className="product-swatches">
@@ -169,7 +177,7 @@ export default function Producttile(props) {
             </NavLink>
           </h2>
         </div>
-        {renderDiscount}
+        SR {format(props.product.list_price)}
         {/* i.e. for category pages and productlistings, is multiple */}
       </div>
       {/*  END: .product-tile */}

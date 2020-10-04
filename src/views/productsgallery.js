@@ -64,43 +64,38 @@ function Productgallery(props) {
 
     dataToRender = results.map((object) => <Producttile product={object} />);
 
-    // if (props.match.params.micro) {
+    if (props.match.params.micro) {
+      maincategoryprop = cat.find((item) => item.id == props.match.params.main);
+      showMicro = (
+        <MicroNav
+          maincategory={props.match.params.main}
+          subcategory={maincategoryprop.subcategories.find(
+            (sub) => sub.id == props.match.params.sub
+          )}
+        />
+      );
+    }
 
-    //     if (results.main_catergory == undefined) {
-    //         return <Loader />
-    //     } else {
-    //         maincategoryprop = results.main_catergory.id;
-    //         showMicro = <MicroNav maincategory={props.match.params.main} subcategory={props.match.params.sub} />
+    // this is code for productgallerty nav if the category level is sub or main
+    else if (props.match.params.sub) {
+      
+        maincategoryprop = cat.find((item) => item.id == props.match.params.main);
+       
+          showMicro = 
+          <MicroNav
+          maincategory={props.match.params.main}
+          subcategory={maincategoryprop.subcategories.find(
+            (sub) => sub.id == props.match.params.sub
+          )}
+        />
+          console.log("bawa g managing cats defined hai");
+        
+      
+    } else if (props.match.params.main) {
+      maincategoryprop = cat.find((item) => item.id == props.match.params.main);
 
-    //     }
-
-    // }
-
-    // // this is code for productgallerty nav if the category level is sub or main
-
-    // else if (props.match.params.sub) {
-    //     if (results.main_catergory == undefined) {
-    //         return <Loader />
-    //     } else {
-    //         maincategoryprop = results.main_catergory.id;
-    //         if (typeof results.managingcats == 'undefined') {
-    //             console.log("bawa g managing cats undefined hai")
-
-    //         } else {
-
-    //             showMicro = <MicroNav maincategory={props.match.params.main} subcategory={props.match.params.sub} />
-    //             console.log("bawa g managing cats defined hai");
-
-    //         }
-    //     }
-
-    // } else if (props.match.params.main) {
-
-    //     maincategoryprop = results.id;
-
-    //     // when use will click on the main categories then aus ne konsa aam lene jana hai micro categories mai
-
-    // }
+      // when use will click on the main categories then aus ne konsa aam lene jana hai micro categories mai
+    }
     // // this code for product gallery nav ends here if category level is sub or main
   }
 

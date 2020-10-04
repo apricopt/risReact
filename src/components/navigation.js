@@ -45,7 +45,10 @@ function Navigation(props) {
   if (loading || results[0] == undefined) {
     return <> </>;
   } else {
-    navsToRender = results.map((item) => (
+    // this was to ignore the "ALL" category in the front end.
+    const navsWithoutAll = results.filter((item) => item.name !== "All");
+    
+    navsToRender = navsWithoutAll.map((item) => (
       <li className="   cgid-new">
         <NavLink
           exact

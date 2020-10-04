@@ -9,28 +9,19 @@ body {
 } */
 
 .apnafont {
-
-    font-family: "brandon-grotesque", sans-serif !important;
-    font-style: normal;
-    font-weight: 400;
-
+  font-family: "brandon-grotesque", sans-serif !important;
+  font-style: normal;
+  font-weight: 400;
 }
 
-
-
-
-
 /* mobile nav starts */
-
 
 .productImg {
   transition: all 1s !important;
   transform: scale(1);
   /* height:500px !important; */
   object-fit: cover !important;
-  border:30px solid rgb(255, 255, 255);
-
-
+  border: 30px solid rgb(255, 255, 255);
 }
 
 .productName {
@@ -39,25 +30,19 @@ body {
 
 .productImg:hover {
   transform: scale(0.9);
-  
 }
 
 .animtitle {
   transition: all 1s ease-in-out !important;
-  color:white;
-  
-
+  color: white;
 }
 
 .animtitle:hover {
   color: #231f20 !important;
   letter-spacing: 3px !important;
   text-shadow: 0px 0px 4px rgb(255, 255, 255) !important;
-background-color: rgba(235, 235, 235, 0.726);
+  background-color: rgba(235, 235, 235, 0.726);
 }
-
-
-
 
 /* @keyframes greying {
   from {filter: grayscale(0%);}
@@ -73,9 +58,8 @@ background-color: rgba(235, 235, 235, 0.726);
   
 } */
 
-
 .active {
- border-bottom: 1px solid rgb(20, 20, 20);
+  border-bottom: 1px solid rgb(20, 20, 20);
 }
 
 .loader {
@@ -97,90 +81,71 @@ background-color: rgba(235, 235, 235, 0.726);
 }
 
 .productContainer {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
-  
 }
 
 .productgallerynav {
   font-family: "brandon-grotesque", sans-serif !important;
 }
 
-
 .productgallerynav li {
   font-family: "FuturaPT-Book" !important;
-
 }
 
-
-
-
-
 .microDada {
-
 }
 .microDad {
   /* background:pink; */
 }
 
 .level-micro {
-
-  padding:0px 0px 0px 0px;
-  margin:0px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px;
   /* background:green !important; */
   transition: all 0.5s;
- 
-  display:none;
-  opacity:0;
-  
-}
 
+  display: none;
+  opacity: 0;
+}
 
 .microDad:hover ~ .level-micro {
-
-  display:block;
-  opacity:1;
-  padding:0px 0px 0px 10px;
-
+  display: block;
+  opacity: 1;
+  padding: 0px 0px 0px 10px;
 }
 
-.level-micro  li{
+.level-micro li {
   /* border-left: 2px solid black; */
- 
-
 }
 
-
-.level-micro:hover  {
-
-  display:block;
-  opacity:1;
+.level-micro:hover {
+  display: block;
+  opacity: 1;
 }
 
 .productimgDisplay {
   width: 100% !important;
-
 }
 
 .cartcard {
   height: 200px;
   /* background: pink; */
-  padding:10px 30px;
+  padding: 10px 30px;
 }
 
 .innercard {
-  border : 2px solid black;
+  border: 2px solid black;
   /* background: green; */
   height: 100%;
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
 }
 
 .innercard .cartimg {
   padding: 20px;
   /* background:grey; */
-  width:30%;
-
+  width: 30%;
 }
 .innercard .cartimg img {
   height: 100%;
@@ -188,31 +153,23 @@ background-color: rgba(235, 235, 235, 0.726);
 
 .innercard .cartdetail {
   /* background: blue; */
-  width:70%;
+  width: 70%;
 }
 
 .chotimage {
-  width:120px !important;
+  width: 120px !important;
 }
-
-
-
-
-
 
 /* transition styling starts here */
 
 .view-enter {
-
-  opacity : 0;
+  opacity: 0;
 }
-
 
 .view-enter-active {
- opacity:1;
- transition: opacity 800ms;
+  opacity: 1;
+  transition: opacity 800ms;
 }
-
 
 .view-exit {
   opacity: 1;
@@ -222,37 +179,29 @@ background-color: rgba(235, 235, 235, 0.726);
   transition: opacity 2220ms;
 }
 
-
-
-
-.fade-enter{
+.fade-enter {
   opacity: 0;
 }
-.fade-exit{
+.fade-exit {
   opacity: 1;
 }
-.fade-enter-active{
+.fade-enter-active {
   opacity: 1;
 }
-.fade-exit-active{
+.fade-exit-active {
   opacity: 0;
 }
 .fade-enter-active,
-.fade-exit-active{
+.fade-exit-active {
   transition: opacity 500ms;
 }
 
-
-
 /* transition styling ends here */
-
-
 
 /* contact us styling starts here */
 
-
 .contact_header {
-  background-image: url('../images/contact_usfinal.jpg');
+  background-image: url("../images/contact_usfinal.jpg");
 }
 
 textarea {
@@ -260,6 +209,25 @@ textarea {
   height: 100px;
 }
 
-
-
 /* contact us styling ends here */
+
+/* fav button style starts here
+ */
+
+.favbutton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.favbutton span {
+  color: grey;
+  transition: all 0.3s;
+}
+.favbutton span:hover {
+  font-size: larger;
+  color: red;
+}

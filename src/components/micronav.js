@@ -1,48 +1,28 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-
-
-
-import useDataFetching from '../containers/useDataFetching'
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 function MicroNav(props) {
-
-
-
-    const { loading, results, error } = useDataFetching(`https://strapi.ris.co/sub-categories/${props.subcategory}`);
-
-    let dataToRender;
-    let maincategoryprop;
-
-    if (loading) {
-        return <> </>
-    }
-
-    if (results.managingcats == undefined || results.managingcats == null) {
-        return (
-            <> </>
-        )
-    }
-
-
-
-
-    return (
-        <div className="refinement Home category-refinement productgallerynav" style={{ marginBottom: 20 }}>
-            <ul id="category-level-1">
-
-
-                {results.managingcats.micro_categories.map(item => (
-                    <li>
-                        <NavLink
-                            to={`/productsgallery/${props.maincategory}/${props.subcategory}/${item.id}`}
-                        > {item.microCategoryName.toUpperCase()}</NavLink>
-                    </li>
-                ))}
-            </ul>
-            {/* PRICE REFINEMENTS */}
-        </div>
-    )
+    const subID = props.subcategory.id;
+  return (
+    <div
+      className="refinement Home category-refinement productgallerynav"
+      style={{ marginBottom: 20 }}
+    >
+      <ul id="category-level-1">
+        {props.subcategory.microcategories.map((item) => (
+          <li>
+            <NavLink
+              to={`/productsgallery/${props.maincategory}/${subID}/${item.id}`}
+            >
+              {" "}
+              {item.name.toUpperCase()}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+      {/* PRICE REFINEMENTS */}
+    </div>
+  );
 }
 
-export default MicroNav
+export default MicroNav;

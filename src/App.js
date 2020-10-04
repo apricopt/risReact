@@ -34,6 +34,7 @@ import Productdetail from "./views/productdetail";
 import Projectdetail from "./views/projectdetail";
 import Cart from "./views/cart";
 import Contactus from "./views/contactus";
+import Payfort from "./views/payfort"
 
 import Ourphilosophy from "./views/ourphilosophy";
 import Welnessroom from "./views/welnessroom";
@@ -122,6 +123,7 @@ function App() {
                 <Route path={"/checkout"} exact component={Checkout} />
                 <Route path={"/viewslider"} exact component={Viewslider} />
                 <Route path={"/contact"} exact component={Contactus} />
+                <Route path={"/payfort"} exact component={Payfort} />
               </Switch>
             </Router>
           </CatProvider>

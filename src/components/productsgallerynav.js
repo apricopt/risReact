@@ -1,41 +1,38 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-
-
-import useDataFetching from '../containers/useDataFetching'
+import useDataFetching from "../containers/useDataFetching";
 
 function Productsgallerynav(props) {
+  // const { loading, results, error } = useDataFetching(`https://strapi.ris.co/main-catergories/${props.maincategory}`);
 
-
-
-  const { loading, results, error } = useDataFetching(`https://strapi.ris.co/main-catergories/${props.maincategory}`);
-
-  let dataToRender ;
+  let dataToRender;
   let maincategoryprop;
 
-  if (loading || results.sub_categories == undefined) {
-     return  <> </>
-  }
+  // if (props.maincategoryprop == undefined) {
+  //   return <> nahi ayi bohsri ki </>;
+  // }
 
-
-
-
-    return (
-        <div className="refinement Home category-refinement productgallerynav" style={{marginBottom:20}}>
-        <ul id="category-level-1">
-          
-         {results.sub_categories.map(item => (
+  return (
+    <div
+      className="refinement Home category-refinement productgallerynav"
+      style={{ marginBottom: 20 }}
+    >
+      <ul id="category-level-1">
+        {props.maincategory.subcategories.map((item) => (
           <li>
-           <NavLink
-           to={`/productsgallery/${props.maincategory}/${item.id}`}
-           > {item.SubcategoryName.toUpperCase()}</NavLink>
+            <NavLink
+              to={`/productsgallery/${props.maincategory.id}/${item.id}`}
+            >
+              {" "}
+              {item.name.toUpperCase()}
+            </NavLink>
           </li>
-         ))}
-        </ul>
-        {/* PRICE REFINEMENTS */}
-      </div>
-    )
+        ))}
+      </ul>
+      {/* PRICE REFINEMENTS */}
+    </div>
+  );
 }
 
-export default Productsgallerynav
+export default Productsgallerynav;

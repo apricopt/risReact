@@ -1,55 +1,52 @@
-import React from 'react'
+import React from "react";
 
 function Cartcard(props) {
+  const { product } = props;
 
+  // currency formatter
+  function format(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
+    return x;
+  }
 
-    const { product } = props;
+  // returning index to remove element from array
+  function remove(id) {
+    return id == product.id;
+  }
 
-
-    // currency formatter
-    function format(x) {
-        x = x.toString();
-        var pattern = /(-?\d+)(\d{3})/;
-        while (pattern.test(x))
-            x = x.replace(pattern, "$1,$2");
-        return x;
-    }
-
-    // returning index to remove element from array
-    function remove(id) {
-        return id == product.id;
-    }
-
-    return (
-        <tr className="cart-row desktop-cart">
-            <td className="item-image">
-                <img src={`https://strapi.ris.co${product.image.formats.thumbnail.url}`} alt={product.name} title={product.name} />
-            </td>
-            <td className="item-details">
-                <div className="product-list-item">
-                    <div className="name">
-                        <a href="">{product.productName}</a>
-                    </div>
-                    <div className="sku">
-                        <span className="label">Item No </span>
-                        <span className="value">{product.itemcode}</span>
-                    </div>
-                    <div className="attribute">
-                        <span className="label">color</span>
-                        <span className="value">
-                            {product.color}
-                        </span>
-                    </div>
-                    <ul className="product-availability-list">
-                        {/* <li className="on-order">Pre-Order</li> */}
-                    </ul>
-                    <div>
-                        <a className="add-to-wishlist" href="">
-                            Add to Wishlist
-                      </a>
-                    </div>
-                </div>
-                {/* 
+  return (
+    <tr className="cart-row desktop-cart">
+      <td className="item-image">
+        <img
+          src={`data:image/gif;base64,${product.image_1920}`}
+          title={product.name}
+        />
+      </td>
+      <td className="item-details">
+        <div className="product-list-item">
+          <div className="name">
+            <a href="">{product.name}</a>
+          </div>
+          <div className="sku">
+            <span className="label">Item No </span>
+            <span className="value">{product.itemcode}</span>
+          </div>
+          <div className="attribute">
+            <span className="label">color</span>
+            <span className="value">{product.color}</span>
+          </div>
+          <ul className="product-availability-list">
+            {/* <li className="on-order">Pre-Order</li> */}
+          </ul>
+          <div>
+            <a className="add-to-wishlist" href="">
+              Add to Wishlist
+            </a>
+          </div>
+        </div>
+        {/* 
 		<div class="item-edit-details">
 			
 				
@@ -59,10 +56,10 @@ function Cartcard(props) {
 			
 		</div>
 		 */}
-            </td>
-            <td className="item-quantity">
-                <span>{product.quantity}</span>
-                {/* <select name="dwfrm_cart_shipments_i0_items_i0_quantity">
+      </td>
+      <td className="item-quantity">
+        <span>{product.quantity}</span>
+        {/* <select name="dwfrm_cart_shipments_i0_items_i0_quantity">
                     <option value={1} selected>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
@@ -164,28 +161,31 @@ function Cartcard(props) {
                     <option value={99}>99</option>
                     <option value={100}>100</option>
                 </select> */}
-            </td>
-            <td className="item-price">
-                <span className="price-sales">SR {format(product.sellingPrice)}</span>
-            </td>
-            <td className="item-total">
-                <span className="price-total">
-                    SR {format((product.sellingPrice * product.quantity))}
-                </span>
-            </td>
-            <td className="item-remove">
-                <div className="item-user-actions">
-                    <button className="button-text" onClick={(e) => {
-                        e.preventDefault();
-                        console.log(e.target.parentNode.parentNode.parentNode)
-                        console.log(e.target.value)
-                        console.log(remove(product.id))
-                    }} value={product} />
-                </div>
-            </td>
-        </tr>
-
-    )
+      </td>
+      <td className="item-price">
+        <span className="price-sales">SR {format(product.list_price)}</span>
+      </td>
+      <td className="item-total">
+        <span className="price-total">
+          SR {format(product.list_price * product.quantity)}
+        </span>
+      </td>
+      <td className="item-remove">
+        <div className="item-user-actions">
+          <button
+            className="button-text"
+            onClick={(e) => {
+              e.preventDefault();
+              console.log(e.target.parentNode.parentNode.parentNode);
+              console.log(e.target.value);
+              console.log(remove(product.id));
+            }}
+            value={product}
+          />
+        </div>
+      </td>
+    </tr>
+  );
 }
 
-export default Cartcard
+export default Cartcard;
