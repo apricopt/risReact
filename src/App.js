@@ -43,6 +43,7 @@ import Underconstruction from "./views/underconstruction";
 import Login from "./views/login";
 import Signup from "./views/signup";
 import Checkout from "./views/checkout";
+import Sales from "./views/sales.js"
 
 // importing subpages
 import Residential from "./views/residential";
@@ -124,6 +125,7 @@ function App() {
                 <Route path={"/viewslider"} exact component={Viewslider} />
                 <Route path={"/contact"} exact component={Contactus} />
                 <Route path={"/payfort"} exact component={Payfort} />
+                <Route path={"/sales"} exact component={Sales} />
               </Switch>
             </Router>
           </CatProvider>

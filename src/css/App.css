@@ -231,3 +231,28 @@ textarea {
   font-size: larger;
   color: red;
 }
+
+/* multistep styling */
+
+.go767851704 {
+  display: inline-block;
+  text-align: center;
+  line-height: 4.5rem;
+  padding: 0 0.7rem;
+  cursor: pointer;
+  color: black !important;
+  border-bottom: 4px solid #3a2c2c !important;
+}
+
+.go767851704::before {
+  position: relative;
+  bottom: -3.99rem;
+  float: left;
+  left: 50%;
+  content: "✓";
+  color: white !important;
+  background-color: #a3aaac !important;
+  width: 1.2em;
+  line-height: 1.4em;
+  border-radius: 1.2em;
+}

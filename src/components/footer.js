@@ -1,6 +1,6 @@
 import React from "react";
-
-import logo from '../images2/HERO/RIS LOGO MAIN.jpg'
+import logo from "../images2/HERO/RIS LOGO MAIN.jpg";
+// import {Navlink} from "react-router-dom";
 
 function Footer() {
   return (
@@ -82,11 +82,11 @@ function Footer() {
                     Careers
                   </a>
                 </li>
-                <li>
-                  <a title="Contact Us" href="">
+                {/* <li>
+                  <Navlink to={"/contact"} >
                     Contact Us
-                  </a>
-                </li>
+                    </Navlink>
+                </li> */}
               </ul>
             </li>
             <li className="col drawer-trigger">
@@ -121,7 +121,7 @@ function Footer() {
                   <li>
                     <a title="Tile & Stone" href="">
                       Textiles
-                  </a>
+                    </a>
                   </li>
                   <a title="Rugs" href="">
                     Stationary
@@ -190,7 +190,6 @@ function Footer() {
             <div className="newsletter-signup-container">
               <input
                 type="text"
-                
                 placeholder="Email"
                 id="newsletter_signup"
                 className="newsInput"
@@ -224,7 +223,10 @@ function Footer() {
             <p id="copyright">© 2020 RIS. All Rights Reserved</p>
             <div className="sociallinksection desktop">
               <span>
-                <a href="https://www.instagram.com/risinteriors/" target="_blank">
+                <a
+                  href="https://www.instagram.com/risinteriors/"
+                  target="_blank"
+                >
                   <span className="fa fa-instagram"></span>
                 </a>
               </span>
@@ -234,12 +236,18 @@ function Footer() {
                 </a>
               </span>
               <span>
-                <a href="https://twitter.com/RIS_Interiors?s=09" target="_blank">
+                <a
+                  href="https://twitter.com/RIS_Interiors?s=09"
+                  target="_blank"
+                >
                   <span className="fa fa-twitter"></span>
                 </a>
               </span>
               <span>
-                <a href="https://www.pinterest.com/risliving/boards" target="_blank">
+                <a
+                  href="https://www.pinterest.com/risliving/boards"
+                  target="_blank"
+                >
                   <span className="fa fa-pinterest"></span>
                 </a>
               </span>
@@ -249,13 +257,7 @@ function Footer() {
               className="sociallinksection mobile clearfix mobile-only"
               style={{ textAlign: "center !important", clear: "both" }}
             >
-              <img
-                alt=""
-                src=""
-                title="RIS"
-                width={42}
-                height={38}
-              />
+              <img alt="" src="" title="RIS" width={42} height={38} />
             </div>
           </div>
           <div
@@ -268,11 +270,7 @@ function Footer() {
               marginBottom: "10px",
             }}
           >
-            <img
-              src={logo}
-              style={{ height: 20 }}
-              border={0}
-            />
+            <img src={logo} style={{ height: 20 }} border={0} />
           </div>
           <style
             dangerouslySetInnerHTML={{

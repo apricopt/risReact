@@ -13,14 +13,27 @@ import { toast } from "react-toastify";
 function Cart() {
   const [cart, setCart] = useContext(CartContext);
   const [login, setLogin] = useContext(LoginContext);
-
+  let FinalTotalPrice = 0;
   let datatorender;
   if (cart.length > 0) {
+    // code to calculate the total price
+    cart.map((item) => {
+      FinalTotalPrice =
+        FinalTotalPrice + item.list_price * parseInt(item.quantity);
+    });
     datatorender = cart.map((item) => <Cartcard results={item} />);
   } else {
     datatorender = (
       <div className="cart-empty">Your Shopping Cart is Empty</div>
     );
+  }
+
+  // currency formatter
+  function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
+    return x;
   }
 
   return (
@@ -120,7 +133,7 @@ function Cart() {
                                                         <tr className="blank"><td>&nbsp;</td></tr> */}
                             <tr className="order-total">
                               <td>Estimated Total</td>
-                              <td>SR (working)</td>
+                              <td>SR {numberWithCommas(FinalTotalPrice)}</td>
                               <td>
                                 <NavLink to={"/checkout"}>
                                   <button>Proceed to Checkout</button>

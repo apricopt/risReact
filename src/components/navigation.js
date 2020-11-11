@@ -22,7 +22,7 @@ function Navigation(props) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await fetch("https://node.ris.co/inventory/categories");
+        const data = await fetch("https://node.ris.co/ecomcat/categories");
         const json = await data.json();
 
         if (json) {
@@ -47,7 +47,7 @@ function Navigation(props) {
   } else {
     // this was to ignore the "ALL" category in the front end.
     const navsWithoutAll = results.filter((item) => item.name !== "All");
-    
+
     navsToRender = navsWithoutAll.map((item) => (
       <li className="   cgid-new">
         <NavLink
@@ -413,7 +413,7 @@ function Navigation(props) {
 
             {/*  */}
 
-            <li className="   cgid-kw_studio_page">
+            {/* <li className="   cgid-kw_studio_page">
               <NavLink
                 exact
                 to={"/contact"}
@@ -422,7 +422,7 @@ function Navigation(props) {
               >
                 <font face="FuturaPT-Bold">Contact Us</font>
               </NavLink>
-            </li>
+            </li> */}
             {console.log(window.location.pathname)}
 
             <li className="mobile-nav-account-link mobile-only">
@@ -483,14 +483,27 @@ function Navigation(props) {
                   className="mini-cart-btn"
                 />
               </span>
-              <span className="hide-mobile">
+              <span className="hide-mobile" style={{ position: "relative" }}>
                 <NavLink to={"/cart"} exact>
-                  Cart{" "}
-                  {props.cart.length > 0 && login.status ? (
-                    props.cart.length
+                  {props.cart.length > 0 ? (
+                    <span
+                      style={{
+                        background: "black",
+                        color: "white",
+                        padding: "2px 4px",
+                        borderRadius: "50%",
+                        position: "absolute",
+                        top: -14,
+                        right: -14,
+                        fontSize: "x-small",
+                      }}
+                    >
+                      {props.cart.length}
+                    </span>
                   ) : (
                     <> </>
                   )}
+                  Cart{" "}
                 </NavLink>
               </span>
             </div>

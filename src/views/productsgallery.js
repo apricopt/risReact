@@ -49,7 +49,7 @@ function Productgallery(props) {
 
   console.log(categ_id);
   const { loading, results, error } = useDataPosting(
-    `https://node.ris.co/inventory/products/${props.match.params.main}/${props.match.params.sub}/${props.match.params.micro}`,
+    `https://node.ris.co/ecomcat/products/${props.match.params.main}/${props.match.params.sub}/${props.match.params.micro}`,
     categ_id
   );
 

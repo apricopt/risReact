@@ -54,6 +54,7 @@ function Login() {
             status: true,
             user_id: response.data[0].id,
             firstName: response.data[0].name,
+            favitems: response.data[0].x_studio_favouritesmany
           });
 
           toast(`Welcome ${response.data[0].name} `);

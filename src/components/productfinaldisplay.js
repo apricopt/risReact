@@ -32,7 +32,7 @@ function Productfinaldisplay(props) {
   // you may also like ends
 
   // controlling how much qunatity user select
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
   function handleChange(e) {
     switch (e.target.name) {
       case "quantity":
@@ -43,10 +43,16 @@ function Productfinaldisplay(props) {
   //  qunatity controller ends
 
   function handleAddtoCart(e) {
-    const product = { ...results, quantity: quantity };
-
-    setCart(cart.concat(data));
-    toast(`${data.display_name} has been added into cart!`);
+    if (quantity > 0) {
+      const product = { ...data, quantity: quantity };
+      console.log("yeh raha jo cart mai jayega", product.quantity);
+      setCart(cart.concat(product));
+      toast(`${data.display_name} has been added into cart!`);
+    } else if (quantity == 0) {
+      toast(`Please Select the quantity!`);
+    } else if (quantity == -1) {
+      toast(`This Product is not available`);
+    }
   }
 
   // for items you may like
@@ -68,10 +74,11 @@ function Productfinaldisplay(props) {
 
   // this function will calculate how much quantity to display
   function getQuantity(value) {
-    const toBeBought = value;
+    // const toBeBought = value;
+    const toBeBought = 4;
     let toBeBoughtRender;
     if (toBeBought == 0) {
-      toBeBoughtRender = <option value={0}>Not Available</option>;
+      toBeBoughtRender = <option value={-1}>Not Available</option>;
 
       return toBeBoughtRender;
     } else {
@@ -231,7 +238,8 @@ function Productfinaldisplay(props) {
                       className
                     >
                       {/* quantity */}
-                      {/* <option value={0}>Not Available</option> */}
+
+                      <option value={0}>Select Quantity</option>
                       {getQuantity(data.free_qty)}
                     </select>
                     {}

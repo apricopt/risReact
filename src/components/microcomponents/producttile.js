@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { NavLink } from "react-router-dom";
 
 import img1 from "../../images/testimage2.png";
 
+import { LoginContext } from "../../contexts/logincontext";
+import { toast } from "react-toastify";
+
+const axios = require("axios");
+
 export default function Producttile(props) {
+  const [login, setLogin] = useContext(LoginContext);
   const { id } = props.product;
 
   // currency formatter
@@ -17,6 +23,81 @@ export default function Producttile(props) {
 
   function addToFav() {
     console.log(id);
+    let favItemsToPushToOdoo = login.favitems.concat(id);
+
+    setLogin((prev) => ({
+      status: prev.status,
+      user_id: prev.user_id,
+      firstName: prev.firstName,
+      favitems: [...prev.favitems, id],
+    }));
+    console.log(login);
+
+    axios({
+      method: "post",
+      url: "https://node.ris.co/customer/fav/add",
+      data: {
+        user_id: login.user_id,
+        favitems: favItemsToPushToOdoo,
+      },
+    })
+      .then((response) => {
+        if (response.data) {
+          toast(`Added into your favourites!`);
+        } else {
+          toast.error(`Error occured while adding into favourites`);
+        }
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }
+
+  function removeToFav() {
+    console.log(id);
+    let favItemsToPushToOdoo = login.favitems.filter((item) => item !== id);
+
+    setLogin((prev) => ({
+      status: prev.status,
+      user_id: prev.user_id,
+      firstName: prev.firstName,
+      favitems: prev.favitems.filter((item) => item !== id),
+    }));
+    console.log(login);
+
+    axios({
+      method: "post",
+      url: "https://node.ris.co/customer/fav/add",
+      data: {
+        user_id: login.user_id,
+        favitems: favItemsToPushToOdoo,
+      },
+    })
+      .then((response) => {
+        if (response.data) {
+          toast(`Removed from the favourites!`);
+        } else {
+          toast.error(`Error occured while removing from favourites`);
+        }
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }
+
+  let icon;
+  if (login.status) {
+    if (login.favitems.includes(id)) {
+      icon = (
+        <span
+          onClick={removeToFav}
+          style={{ color: "red" }}
+          className="fa fa-heart"
+        ></span>
+      );
+    } else {
+      icon = <span onClick={addToFav} className="fa fa-heart"></span>;
+    }
   }
 
   // let StatusDiscount;
@@ -129,9 +210,8 @@ export default function Producttile(props) {
       style={{ position: "relative" }}
       data-colors-to-show="RAQZ"
     >
-      <h2 class="favbutton">
-        <span onClick={addToFav} className="fa fa-heart"></span>+
-      </h2>
+      {login.status ? <h2 class="favbutton">{icon}</h2> : <> </>}
+
       <div className="product-tile">
         <div className="product-image">
           <NavLink to={`/productdetail/${id}`} exact className="thumb-link">
